@@ -1,14 +1,19 @@
 sudo: required
 language: java
-jdk: oraclejdk8
+jdk:
+  - oraclejdk8
 
 services:
   - docker
 
 script:
-  -
+  - NULL
 
 after_success:
-  -
+  - NULL
+
 
 deploy:
+
+notifications:
+  email: true

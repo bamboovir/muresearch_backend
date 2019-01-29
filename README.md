@@ -109,6 +109,16 @@ sudo docker container logs <hash>
 ```bash
 java -jar myjar.jar --spring.config.location=D:\wherever\application.properties
 ```
+
+
+## Install
+
+```bash
+sudo docker pull mongo:latest
+sudo docker pull docker.elastic.co/elasticsearch/elasticsearch:6.6.0
+
+```
+
 ## Useful Link
 
 ```
@@ -131,6 +141,8 @@ https://docs.spring.io/spring-data/mongodb/docs/2.1.x-SNAPSHOT/reference/html/
 https://docs.spring.io/spring-data/elasticsearch/docs/3.0.10.RELEASE/reference/html/
 https://stackoverflow.com/questions/40286549/spring-boot-security-cors
 https://stackoverflow.com/questions/30184764/aggregation-support-for-spring-data-elastic-search
+https://hub.docker.com/_/mongo
+https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
 ```
 
 ## About Route
