@@ -50,9 +50,10 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable() // Based on token, no csrf required
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and() // There is no need for a session in the system.
                 .authorizeRequests()
-                .antMatchers(apiBaseStr + "auth/**").permitAll() // token routing
-                .antMatchers(apiBaseStr + "admin/**").hasAnyAuthority("ADMIN")
-                .antMatchers(apiBaseStr + "**").hasAnyAuthority("GUEST", "ADMIN")
+                /* Disable Auth When Test*/
+                //.antMatchers(apiBaseStr + "auth/**").permitAll() // token routing
+                //.antMatchers(apiBaseStr + "admin/**").hasAnyAuthority("ADMIN")
+                //.antMatchers(apiBaseStr + "**").hasAnyAuthority("GUEST", "ADMIN")
                 .anyRequest().permitAll(); // Other APIs are protected with Token
         http.headers().cacheControl();
         http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

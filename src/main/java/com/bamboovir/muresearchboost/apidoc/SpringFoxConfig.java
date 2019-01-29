@@ -13,24 +13,6 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Collections;
-/*
-
-    @NotNull
-    private int id;
-
-    @NotBlank
-    @Size(min = 1, max = 20)
-    private String firstName;
-
-    @NotBlank
-    @Pattern(regexp ="[SOME REGULAR EXPRESSION]")
-    private String lastName;
-
-    @Min(0)
-    @Max(100)
-    private int age;
-
- */
 
 @Configuration
 @EnableSwagger2
