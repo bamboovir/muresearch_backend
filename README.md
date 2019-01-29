@@ -3,82 +3,17 @@
 
 ## About Document
 
-描述API的swagger元数据
+- 描述API的swagger元数据
+
 http://localhost:8080/v2/api-docs
-在线渲染swagger元数据
+
+- 在线渲染swagger元数据
+
 https://editor.swagger.io/
-生成文档
+
+- 生成文档
+
 http://localhost:8080/swagger-ui.html
-
-## About Route
-
-首页
-GET / -> HTML 繁复的搜索页面
-
-词云路由
-GET /api/wordcloud/ -> {} 
-POST /api/wordcloud/ {} -> {}
-
-图路由
-GET /api/graph/user/ -> {}
-GET /api/graph/people/ -> {}
-GET /api/graph/subject/ -> {}
-GET /api/graph/publication/ -> {}
-
-自动补全路由
-POST /api/autocomplete/ string -> {} 
-POST /api/autocomplete/people/ string -> {}
-POST /api/autocomplete/user/ string -> {}
-POST /api/autocomplete/publication/ string -> {}
-POST /api/autocomplete/subject/ string -> {}
-
-搜索路由
-GET /search/ -> HTML 简洁的搜索页面
-POST /search/ {} -> HTML 搜索结果
-POST /search/people/ {} -> HTML
-POST /search/user/ {} -> HTML
-POST /search/publication/ {} -> HTML
-POST /search/subject/ {} -> HTML
-
-POST /api/search/ {} -> {}        通用搜索
-POST /api/search/people/ {} -> {} 针对人的搜索
-POST /api/search/user/ {} -> {} 针对用户的搜索
-POST /api/search/publication/ {} -> {} 针对出版物的搜索
-POST /api/search/subject/ {} -> {} 针对科目的搜索
-
-People
- 
-GET /people/ -> HTML (首页) （获取最近命中最多的人） （搜索框）
-GET /people/id/{id} -> HTML 个人页面
-- 个人信息的展示
-    getPeopleById
-- 跳转到用户页面
-    getPeopleById
-    getPublicationByPeople
-    if getPeopleById.isUser is True:
-        goto getUserById(userId)
-- 和这个人相关的？？？
-
-User
-
-GET /user/{username} -> HTML
-GET /user/id/{id} -> HTML 
-
-Subject 
-
-GET /subject/{subject_name} -> HTML
-GET /subject/id/{id} -> HTML
-GET /api/subject/{id} -> {}
-
-Publication
-
-GET /publication/{id} -> HTML
-GET /api/publication/{id} -> {}
-
-Token
-
-/login
-
 
 ## 将npm run build 生成的 dist 目录资源与Spring Boot整合
 
@@ -196,4 +131,76 @@ https://docs.spring.io/spring-data/mongodb/docs/2.1.x-SNAPSHOT/reference/html/
 https://docs.spring.io/spring-data/elasticsearch/docs/3.0.10.RELEASE/reference/html/
 https://stackoverflow.com/questions/40286549/spring-boot-security-cors
 https://stackoverflow.com/questions/30184764/aggregation-support-for-spring-data-elastic-search
+```
+
+## About Route
+
+```
+首页
+GET / -> HTML 繁复的搜索页面
+
+词云路由
+GET /api/wordcloud/ -> {} 
+POST /api/wordcloud/ {} -> {}
+
+图路由
+GET /api/graph/user/ -> {}
+GET /api/graph/people/ -> {}
+GET /api/graph/subject/ -> {}
+GET /api/graph/publication/ -> {}
+
+自动补全路由
+POST /api/autocomplete/ string -> {} 
+POST /api/autocomplete/people/ string -> {}
+POST /api/autocomplete/user/ string -> {}
+POST /api/autocomplete/publication/ string -> {}
+POST /api/autocomplete/subject/ string -> {}
+
+搜索路由
+GET /search/ -> HTML 简洁的搜索页面
+POST /search/ {} -> HTML 搜索结果
+POST /search/people/ {} -> HTML
+POST /search/user/ {} -> HTML
+POST /search/publication/ {} -> HTML
+POST /search/subject/ {} -> HTML
+
+POST /api/search/ {} -> {}        通用搜索
+POST /api/search/people/ {} -> {} 针对人的搜索
+POST /api/search/user/ {} -> {} 针对用户的搜索
+POST /api/search/publication/ {} -> {} 针对出版物的搜索
+POST /api/search/subject/ {} -> {} 针对科目的搜索
+
+People
+ 
+GET /people/ -> HTML (首页) （获取最近命中最多的人） （搜索框）
+GET /people/id/{id} -> HTML 个人页面
+- 个人信息的展示
+    getPeopleById
+- 跳转到用户页面
+    getPeopleById
+    getPublicationByPeople
+    if getPeopleById.isUser is True:
+        goto getUserById(userId)
+- 和这个人相关的？？？
+
+User
+
+GET /user/{username} -> HTML
+GET /user/id/{id} -> HTML 
+
+Subject 
+
+GET /subject/{subject_name} -> HTML
+GET /subject/id/{id} -> HTML
+GET /api/subject/{id} -> {}
+
+Publication
+
+GET /publication/{id} -> HTML
+GET /api/publication/{id} -> {}
+
+Token
+
+/login
+
 ```
