@@ -49,7 +49,6 @@ public class People implements MuResearchModel{
     private String imageSmailUrl;
     private String imageLargeUrl;
     private List<String> career;
-    // Organization扩展为对象？
     private List<String> organization;
     private String information;
     private String imageUrl;

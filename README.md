@@ -3,19 +3,10 @@
 
 ## About Document
 
-- 描述API的swagger元数据
+- https://editor.swagger.io/
+- http://localhost:8080/swagger-ui.html
 
-http://localhost:8080/v2/api-docs
-
-- 在线渲染swagger元数据
-
-https://editor.swagger.io/
-
-- 生成文档
-
-http://localhost:8080/swagger-ui.html
-
-## 将npm run build 生成的 dist 目录资源与Spring Boot整合
+## 将`npm run build`生成的 dist 目录资源与Spring Boot整合
 
 ```
 dist 目录的结构
@@ -102,6 +93,11 @@ sudo docker run -p 8080:8080 -d muresearch/muresearchboost:latest
 sudo docker run -d -p 8080:8080 -t muresearch/muresearchboost:latest
 # Guardian view output
 sudo docker container logs <hash>
+
+sudo docker login --username *** --password ***
+sudo docker tag <hash> bamboovir/muresearchboost:1.00
+sudo docker push bamboovir/muresearchboost:1.00
+https://cloud.docker.com/repository/registry-1.docker.io/bamboovir/muresearchboost
 ```
 
 ## 使用指定位置的配置文件
@@ -216,3 +212,5 @@ Token
 /login
 
 ```
+
+http://35.247.68.0:9200/people/_search?pretty=true&q=*:*
