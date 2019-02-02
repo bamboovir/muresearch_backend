@@ -1,0 +1,45 @@
+version: '3'
+services:
+  muresearch:
+    image: "bamboovir/muresearchboost:1.00"
+    ports:
+      - "8080:8080"
+    environment:
+      - dbaddress=0.0.0.0
+      - spring_data_mongodb_username=${DB_USERNAME}
+      - spring_data_mongodb_password=${DB_PASSWORD}
+    networks:
+      - backend
+    depends_on:
+      - mongo
+      - elasticsearch
+  mongo:
+    image: "mongo:3.4"
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+    networks:
+      - backend
+
+  elasticsearch:
+    image: "docker.elastic.co/elasticsearch/elasticsearch:6.6.0"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+      - cluster.name=elasticsearch
+      - http.port=9200
+      - http.cors.enabled=true
+      - http.cors.allow-origin=http://localhost:1358,http://127.0.0.1:1358
+      - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+      - http.cors.allow-credentials=true
+
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: "bridge"

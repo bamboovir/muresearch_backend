@@ -97,7 +97,21 @@ sudo docker container logs <hash>
 sudo docker login --username *** --password ***
 sudo docker tag <hash> bamboovir/muresearchboost:1.00
 sudo docker push bamboovir/muresearchboost:1.00
-https://cloud.docker.com/repository/registry-1.docker.io/bamboovir/muresearchboost
+https://cloud.docker.com/repository/registry-1.docker.io/bamboovir/muresearchboost.,k
+
+
+docker run -d -P --name web -v /config:/config 
+启动JVM时，将系统属性提供给/config
+java -jar myproject.jar --spring.config.location=file:/config/application.properties
+
+install docker composer
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+sudo touch .env
+
+sudo docker-compose up
 ```
 
 ## 使用指定位置的配置文件
@@ -118,6 +132,7 @@ sudo docker pull docker.elastic.co/elasticsearch/elasticsearch:6.6.0
 ## Useful Link
 
 ```
+https://stackoverflow.com/questions/46057625/externalising-spring-boot-properties-when-deploying-to-docker
 https://githubuniverse.com/workshops/?utm_source=github&utm_medium=banner&utm_campaign=ww-dotcom-universe-20180919&utm_content=dash-workshops
 https://spring.io/guides/gs/spring-boot-docker/
 https://spring.io/guides/gs/spring-boot-docker/
