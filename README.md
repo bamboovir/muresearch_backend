@@ -112,6 +112,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo touch .env
 
 sudo docker-compose up
+
+pipenv lock
+sudo docker build . -t muresearchboostalgo:1.00
 ```
 
 ## 使用指定位置的配置文件
@@ -154,6 +157,8 @@ https://stackoverflow.com/questions/40286549/spring-boot-security-cors
 https://stackoverflow.com/questions/30184764/aggregation-support-for-spring-data-elastic-search
 https://hub.docker.com/_/mongo
 https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
+https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/
+
 ```
 
 ## About Route
