@@ -6,8 +6,5 @@ import reactor.core.publisher.Mono;
 
 public interface TokenUserRepository extends ReactiveMongoRepository<TokenUser, String> {
     Mono<TokenUser> findByUsernameAndPassword(String username, String password);
-
     Mono<TokenUser> findByEmailAndPassword(String email, String password);
-
-    Mono<TokenUser> findByPhoneNumberAndPassword(String email, String password);
 }

@@ -35,7 +35,7 @@ public class TestUserController {
     Token操作要求幂等性
      */
     @PostMapping("/")
-    public Mono<User> createUser(@Valid @RequestBody User user) {
+    public Mono<User> createUser(@RequestBody User user) {
         return userRepository.save(user).doOnSuccess(x -> userElasticSearchRepository.save(x));
     }
 
@@ -71,5 +71,3 @@ public class TestUserController {
     }
 
 }
-
-

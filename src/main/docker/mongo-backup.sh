@@ -1,0 +1,1 @@
+sudo mongodump -v --forceTableScan --host localhost:27017 --username admin --password Clscls980 --authenticationDatabase admin  --db 'muresearch' --out=$(pwd)/db

@@ -1,4 +1,4 @@
-package com.bamboovir.muresearchboost.app.Enum;
+package com.bamboovir.muresearchboost.app.muenum;
 
 public enum Scope {
     IEEE,

@@ -4,9 +4,7 @@ public class SecurityResponse {
 
     private String error;
 
-    public SecurityResponse() {
-
-    }
+    public SecurityResponse() {}
 
     public SecurityResponse(String error) {
         this.error = error;

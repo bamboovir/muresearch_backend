@@ -10,10 +10,9 @@ public class TokenUser {
     @Id
     private String id;
     private String email;
-    private String phoneNumber;
     private String username;
     private String password;
     private String authorities;
-    private Long lastPasswordChange;
+    private Data lastPasswordChange;
     private Boolean enable;
 }

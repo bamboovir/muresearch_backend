@@ -67,7 +67,6 @@ public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFil
             guestTokenUser.setEnable(Boolean.TRUE);
             guestTokenUser.setPassword("NULL");
             guestTokenUser.setUsername("GUEST");
-            guestTokenUser.setLastPasswordChange(new Date().getTime() - 1000);
             UserDetails guestUserDetail = SecurityModelFactory.create(guestTokenUser);
             Authentication guestAuthentication =
                     new UsernamePasswordAuthenticationToken(guestUserDetail.getUsername(), guestUserDetail.getPassword(), guestUserDetail.getAuthorities());

@@ -64,7 +64,7 @@ public class UserFunc {
             authToken = cookieAuthToken;
         }
 
-        this.user.setUsername(this.tokenUtils.getUsernameFromToken(authToken));
+        this.user.setUserName(this.tokenUtils.getUsernameFromToken(authToken));
         /*
         在Token中放入其他值
          */

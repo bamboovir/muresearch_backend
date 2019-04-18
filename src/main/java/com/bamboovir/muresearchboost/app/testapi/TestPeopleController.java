@@ -35,7 +35,7 @@ public class TestPeopleController {
     需要验证People是否Valid
      */
     @PostMapping("/")
-    public Mono<People> createPublication(@Valid @RequestBody People people) {
+    public Mono<People> createPublication(@RequestBody People people) {
         return peopleRepository.save(people).doOnSuccess(x -> peopleElasticSearchRepository.save(x));
     }
 

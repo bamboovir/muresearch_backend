@@ -17,7 +17,6 @@ public class SecurityModelFactory {
         }
 
         Date lastPasswordReset = new Date();
-        lastPasswordReset.setTime(tokenUser.getLastPasswordChange());
         return new UserDetailImpl(
                 tokenUser.getUsername(),
                 tokenUser.getUsername(),

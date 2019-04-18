@@ -10,10 +10,9 @@ import java.util.stream.Stream;
 
 @Repository
 public interface UserElasticSearchRepository extends ElasticsearchRepository<User, String> {
-    Stream<User> findByFullnameLike(String name);
     Stream<User> findByEmailLike(String email);
-    Stream<User> findByUsernameLike(String username);
-    Page<User> findByUsernameLike(String username, Pageable pageable);
+    Stream<User> findByUserNameLike(String username);
+    Page<User> findByUserNameLike(String username, Pageable pageable);
 
     /*
     @Query("{"bool" : {"must" : {"field" : {"name" : "?0"}}}}")
