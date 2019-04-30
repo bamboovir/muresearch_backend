@@ -28,6 +28,7 @@ public class User implements MuResearchModel{
     private String lastName;
     private String email;
     private String information;
+    private String imageUrl;
     private Boolean enable;
     private Date createdAt;
     private Date lastPasswordChange;

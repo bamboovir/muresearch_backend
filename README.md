@@ -234,3 +234,30 @@ Token
 ```
 
 http://35.247.68.0:9200/people/_search?pretty=true&q=*:*
+
+清空Docker
+docker system prune -a
+
+## 关于部署
+
+```bash
+# ----------------------------- 
+git clone "https://github.com/bamboovir/muresearch_backend"
+# OS : Ubuntu 18.04 LTS
+sudo snap install docker
+sudo apt install maven
+# maven 打包docker image跳过测试
+sudo mvn package docker:build -Dmaven.test.skip=true
+sudo docker login --username <***> --password <***>
+sudo docker tag <hash> bamboovir/muresearchboost:<version>
+sudo docker push bamboovir/muresearchboost:<version>
+# -----------------------------
+sudo apt install python3-pip
+sudo -H pip3 install pipenv
+sudo docker tag <hash> bamboovir/muresearchalgo:1.00
+
+# -----------------------------
+
+sudo docker-compose up -d
+```
+

@@ -20,7 +20,7 @@ services:
     networks: 
       - backend
   muresearch:
-    image: "bamboovir/muresearchboost:1.00"
+    image: "bamboovir/muresearchboost:1.01"
     ports:
       - "8080:8080"
     environment:
