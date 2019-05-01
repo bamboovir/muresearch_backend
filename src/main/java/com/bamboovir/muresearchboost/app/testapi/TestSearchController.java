@@ -33,6 +33,7 @@ public class TestSearchController {
     @Autowired
     private PublicationElasticSearchRepository publicationElasticSearchRepository;
 
+    // https://docs.spring.io/spring-data/elasticsearch/docs/current/reference/html/#elasticsearch.scroll
     @PostMapping("/{page}")
     public Message<Map<String, List<? extends MuResearchModel>>> getSearchResultBySearchState(@RequestBody SearchState searchState
             , @PathVariable("page") Integer page) {

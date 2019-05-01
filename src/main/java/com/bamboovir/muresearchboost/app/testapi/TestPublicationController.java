@@ -27,6 +27,7 @@ public class TestPublicationController {
         return new Publication().mock();
     }
 
+    // db.getCollection('publication').aggregate([{ $sample: { size: 1 } }])
     @GetMapping("/")
     public Flux<Publication> getAllPublication() {
         return publicationRepository.findAll();
