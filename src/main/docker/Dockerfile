@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:13-jdk-alpine
 VOLUME /tmp
 ARG JAR_FILE=muresearchboost-0.0.1-SNAPSHOT.jar
 ADD ${JAR_FILE} /opt/app.jar
