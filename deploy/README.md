@@ -67,3 +67,9 @@ npm run build # now we get asset folder in ./dist
 
 sudo docker-compose up -d
 ```
+
+## backup and restore
+
+```bash
+sudo apt-get install mongo-tools
+```

@@ -2,6 +2,7 @@ version: '3'
 services:
   nginxreverseproxy:
     image: "nginx:1.15"
+    container_name: nginxreverseproxy
     ports:
       - "8000:8000"
     #  - "443:443"
@@ -16,6 +17,7 @@ services:
       - muresearch
   muresearchalgo:
     image: "bamboovir/muresearchalgo:1.00"
+    container_name: muresearchalgo
     ports:
       - "5000:5000"
     #expose: # for deploy
@@ -24,6 +26,7 @@ services:
       - backend
   muresearch:
     image: "bamboovir/muresearchboost:1.02"
+    container_name: muresearch
     ports:
       - "8080:8080"
     #expose: # for deploy
@@ -45,6 +48,7 @@ services:
       - elasticsearch
   mongo:
     image: "mongo:3.4"
+    container_name: mongodb
     ports:
       - "27017:27017"
     #expose: # for deploy
@@ -55,10 +59,14 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${DB_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - '/var/mongo_data:/data/db'
+      - '/var/mongo_backup:/backup'
     networks:
       - backend
   elasticsearch:
     image: "docker.elastic.co/elasticsearch/elasticsearch:6.6.0"
+    container_name: elasticsearch
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -68,11 +76,19 @@ services:
     environment:
       - discovery.type=single-node
       - cluster.name=elasticsearch
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - http.port=9200
       - http.cors.enabled=true
       - http.cors.allow-origin=http://localhost:1358,http://127.0.0.1:1358
       - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
       - http.cors.allow-credentials=true
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - '/var/elasticsearch_data:/usr/share/elasticsearch/data'
 
     networks:
       - backend
