@@ -78,6 +78,7 @@ services:
       - cluster.name=elasticsearch
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - path.repo=/backup
       - http.port=9200
       - http.cors.enabled=true
       - http.cors.allow-origin=http://localhost:1358,http://127.0.0.1:1358
@@ -89,6 +90,7 @@ services:
         hard: -1
     volumes:
       - '/var/elasticsearch_data:/usr/share/elasticsearch/data'
+      - '/var/elasticsearch_backup:/backup'
 
     networks:
       - backend
