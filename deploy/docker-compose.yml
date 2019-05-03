@@ -60,8 +60,8 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${DB_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
     volumes:
-      - '~/var/mongo_data:/data/db'
-      - '~/var/mongo_backup:/backup'
+      - '/var/mongo_data:/data/db'
+      - '/var/mongo_backup:/backup'
     networks:
       - backend
   elasticsearch:
@@ -89,8 +89,8 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - '~/var/elasticsearch_data:/usr/share/elasticsearch/data'
-      - '~/var/elasticsearch_backup:/backup'
+      - '/var/elasticsearch_data:/usr/share/elasticsearch/data'
+      - '/var/elasticsearch_backup:/backup'
 
     networks:
       - backend
