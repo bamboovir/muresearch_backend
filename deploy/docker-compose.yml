@@ -25,7 +25,7 @@ services:
     networks: 
       - backend
   muresearch:
-    image: "bamboovir/muresearchboost:1.02"
+    image: "bamboovir/muresearchboost:1.03"
     container_name: muresearch
     ports:
       - "8080:8080"

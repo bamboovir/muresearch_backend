@@ -42,7 +42,7 @@ sudo mvn test # run test
 sudo mvn package docker:build # build docker file
 
 sudo docker login --username <***> --password <***>
-image_id=$(sudo docker image ls | tr -s ' ' | cut -d ' ' -f 3 | head -n 1)
+image_id=$(sudo docker image ls | grep muresearch | tr -s ' ' | cut -d ' ' -f 3 | head -n 1)
 curl https://registry.hub.docker.com//v1/repositories/bamboovir/muresearchboost/tags # check curr version
 sudo docker tag $image_id bamboovir/muresearchboost:<version[1.00]>
 sudo docker push bamboovir/muresearchboost:<version[1.00]>
