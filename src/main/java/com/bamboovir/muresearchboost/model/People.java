@@ -20,8 +20,7 @@ import java.util.stream.Stream;
 public class People implements MuResearchModel{
     @Id
     private String id;
-    private String firstName;
-    private String lastName;
+    private String name;
     private String email;
     private String information;
     private String imageUrl;
@@ -31,8 +30,7 @@ public class People implements MuResearchModel{
     public People mock() {
         return new People()
                 .setId("1")
-                .setFirstName("Ding")
-                .setLastName("Hao")
+                .setName("Ding Hao")
                 .setEmail("hd945@mail.missouri.edu")
                 .setImageUrl("http://google.com")
                 .setInformation("Hello World")

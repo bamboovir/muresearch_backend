@@ -8,9 +8,8 @@ import com.bamboovir.muresearchboost.model.Publication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path="${testAPI}/people")
@@ -37,6 +36,11 @@ public class TestPeopleController {
     @PostMapping("/")
     public Mono<People> createPublication(@RequestBody People people) {
         return peopleRepository.save(people).doOnSuccess(x -> peopleElasticSearchRepository.save(x));
+    }
+
+    @GetMapping("/name/{name}")
+    public Flux<People> getPeopleListByName(@PathVariable(value = "name") String name){
+        return peopleRepository.findAllByName(name);
     }
 
     /*

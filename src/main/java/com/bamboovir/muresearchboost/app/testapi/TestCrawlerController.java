@@ -2,13 +2,16 @@ package com.bamboovir.muresearchboost.app.testapi;
 
 import com.bamboovir.muresearchboost.app.elasticsearch.PeopleElasticSearchRepository;
 import com.bamboovir.muresearchboost.app.elasticsearch.PublicationElasticSearchRepository;
+import com.bamboovir.muresearchboost.app.persistence.PeopleNameToPublicationRepository;
 import com.bamboovir.muresearchboost.app.persistence.PeopleRepository;
 import com.bamboovir.muresearchboost.app.persistence.PublicationRepository;
 import com.bamboovir.muresearchboost.model.Message;
 import com.bamboovir.muresearchboost.model.People;
+import com.bamboovir.muresearchboost.model.PeopleNameToPublications;
 import com.bamboovir.muresearchboost.model.Publication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +23,8 @@ public class TestCrawlerController {
     PeopleRepository peopleRepository;
     @Autowired
     PublicationRepository publicationRepository;
+    @Autowired
+    private PeopleNameToPublicationRepository peopleNameToPublicationRepository;
     @Autowired
     private PeopleElasticSearchRepository peopleElasticSearchRepository;
     @Autowired
@@ -45,6 +50,17 @@ public class TestCrawlerController {
                         .collect(Collectors.toList())
                         .doOnError(Throwable::printStackTrace)
                         .doOnSuccess(x -> publicationElasticSearchRepository.saveAll(x))
+                        .block());
+    }
+
+    @PostMapping("/peoplenametopublication/bulk")
+    public Message<List<PeopleNameToPublications>> createPeopleNameToPublications(@RequestBody List<PeopleNameToPublications> peopleNameToPublicationsList) {
+        return new Message<List<PeopleNameToPublications>>()
+                .setCode(200)
+                .setData(peopleNameToPublicationRepository
+                        .saveAll(peopleNameToPublicationsList)
+                        .collect(Collectors.toList())
+                        .doOnError(Throwable::printStackTrace)
                         .block());
     }
 

@@ -1,3 +1,12 @@
+# install docker and docker-compose
+
+```bash
+# https://docs.docker.com/install/linux/docker-ce/ubuntu/
+
+sudo aa-remove-unknown
+AppArmor (Application Armor) is a Linux security module that protects an operating system and its applications from security threats. To use it, a system administrator associates an AppArmor security profile with each program. Docker expects to find an AppArmor policy loaded and enforced. Check default profiles with:
+```
+
 # 创建部署环境
 
 create a VM instance (ubuntu 18.10)
