@@ -26,7 +26,7 @@ services:
       - .env
     environment:
       - mongo_host=mongo
-      - mongo_port='27017'
+      - mongo_port=27017
       - mongo_username=${DB_USERNAME}
       - mongo_password=${DB_PASSWORD}
     networks: 
