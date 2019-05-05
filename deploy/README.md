@@ -12,11 +12,29 @@ AppArmor (Application Armor) is a Linux security module that protects an operati
 create a VM instance (ubuntu 18.10)
 
 ```bash
-# install docker by snap
-sudo snap install docker # version 18.06.1-ce
+# Uninstall old versions
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get update
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+   
 # clone main repo
 git clone "https://github.com/bamboovir/muresearch_backend"
-cd muresearch_backend/src/main/docker/
+ cd muresearch_backend/deploy/
 # db config in .env
 # 清除之前的痕迹
 sudo docker-compose rm -f
@@ -52,10 +70,10 @@ sudo docker push bamboovir/muresearchboost:<version[1.00]>
 ## muresearchalgo
 
 ```bash
-sudo apt-get update && sudo apt-get upgrade
-sudo apt install python3-pip
-sudo -H pip3 install pipenv
-sudo docker build
+#sudo apt-get update && sudo apt-get upgrade
+#sudo apt install python3-pip
+#sudo -H pip3 install pipenv
+sudo docker build .
 image_id=$(sudo docker image ls | tr -s ' ' | cut -d ' ' -f 3 | head -n 1)
 sudo docker tag $image_id bamboovir/muresearchalgo:<version>
 sudo docker push bamboovir/muresearchalgo:<version>

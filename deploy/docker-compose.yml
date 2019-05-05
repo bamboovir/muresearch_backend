@@ -16,12 +16,19 @@ services:
       - elasticsearch
       - muresearch
   muresearchalgo:
-    image: "bamboovir/muresearchalgo:1.00"
+    image: "bamboovir/muresearchalgo:latest"
     container_name: muresearchalgo
     ports:
       - "5000:5000"
     #expose: # for deploy
     #  - "5000"
+    env_file:
+      - .env
+    environment:
+      - mongo_host=mongo
+      - mongo_port='27017'
+      - mongo_username=${DB_USERNAME}
+      - mongo_password=${DB_PASSWORD}
     networks: 
       - backend
   muresearch:
