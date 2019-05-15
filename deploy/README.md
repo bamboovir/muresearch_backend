@@ -105,9 +105,8 @@ sudo docker-compose up -d
 sudo apt-get install mongo-tools
 ```
 ### MongoDB
-- ![](./mongo_backup.sh)
-- ![](./mongo_restore.sh)
+- [./mongo-backup.sh](./mongo-backup.sh)
+- [./mongo-restore.sh](./mongo-restore.sh)
 
 ### ElasticSearch
-- ![](./elasticsearch_backup.sh)
-- ![](./elasticsearch_restore.sh)
+- [./elasticsearch-backup.sh](./elasticsearch-backup.sh)
