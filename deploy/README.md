@@ -7,7 +7,7 @@ sudo aa-remove-unknown
 AppArmor (Application Armor) is a Linux security module that protects an operating system and its applications from security threats. To use it, a system administrator associates an AppArmor security profile with each program. Docker expects to find an AppArmor policy loaded and enforced. Check default profiles with:
 ```
 
-# 创建部署环境
+# Create deploy env
 
 create a VM instance (ubuntu 18.10)
 
@@ -40,14 +40,14 @@ sudo chmod +x /usr/local/bin/docker-compose
 git clone "https://github.com/bamboovir/muresearch_backend"
  cd muresearch_backend/deploy/
 # db config in .env
-# 清除之前的痕迹
+# Clear
 sudo docker-compose rm -f
 sudo docker system prune -a
-# 后台启动服务
+# run service in background
 sudo docker-compose up -d
 ```
 
-# 创建构建环境
+# Create Build env
 
 ## muresearchboost
 
@@ -104,3 +104,10 @@ sudo docker-compose up -d
 ```bash
 sudo apt-get install mongo-tools
 ```
+### MongoDB
+- ![](./mongo_backup.sh)
+- ![](./mongo_restore.sh)
+
+### ElasticSearch
+- ![](./elasticsearch_backup.sh)
+- ![](./elasticsearch_restore.sh)
