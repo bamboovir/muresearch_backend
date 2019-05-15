@@ -6,34 +6,9 @@
 - https://editor.swagger.io/
 - http://localhost:8080/swagger-ui.html
 
-## 将`npm run build`生成的 dist 目录资源与Spring Boot整合
-
-```
-dist 目录的结构
-
-C:.
-│   index.html
-│
-└───static
-    │   header.jpg
-    │   header1.jpg
-    │   Sierra.jpg
-    │
-    ├───css
-    │       app.0a53381fac10c202bb80c5818f33fedc.css
-    │       app.0a53381fac10c202bb80c5818f33fedc.css.map
-    │
-    └───js
-            app.1473b254e1a5b6610703.js
-            app.1473b254e1a5b6610703.js.map
-            manifest.2ae2e69a05c33dfc65f8.js
-            manifest.2ae2e69a05c33dfc65f8.js.map
-            vendor.95bfc2f10c8581d94c9c.js
-            vendor.95bfc2f10c8581d94c9c.js.map
-
 ```
 
-## 在Spring Boot项目的资源目录使用这种呈现方式
+## Spring Boot / Vue Tree 
 
 ```
 C:.
@@ -61,76 +36,12 @@ C:.
 
 ```
 
-## 添加 HTTPS 支持
-使用自己生成的证书
-
-```bash
-keytool -genkey -alias muresearchboost -storetype PKCS12 -keyalg RSA -keysize 2048  -keystore keystore.p12 -validity 3650
-```
-
-```
-1.-storetype 指定密钥仓库类型 
-2.-keyalg 生证书的算法名称，RSA是一种非对称加密算法 
-3.-keysize 证书大小 
-4.-keystore 生成的证书文件的存储路径 
-5.-validity 证书的有效期
-```
-
-## Package image
-
-```bash
-# OS : Ubuntu 18.04 LTS
-sudo snap install docker
-sudo apt install maven
-# maven 打包跳过测试
-# mvn package -Dmaven.test.skip=true
-sudo mvn package docker:build -Dmaven.test.skip=true
-sudo docker images
-# muresearch/muresearchboost   latest              d0a3d0749bf0        2 minutes ago       187MB
-# openjdk                      8-jdk-alpine        c9a60ce9cfed        4 weeks ago         103MB
-sudo docker run -p 8080:8080 -d muresearch/muresearchboost:latest
-# Print log
-sudo docker run -d -p 8080:8080 -t muresearch/muresearchboost:latest
-# Guardian view output
-sudo docker container logs <hash>
-
-sudo docker login --username *** --password ***
-sudo docker tag <hash> bamboovir/muresearchboost:1.00
-sudo docker push bamboovir/muresearchboost:1.00
-https://cloud.docker.com/repository/registry-1.docker.io/bamboovir/muresearchboost.,k
-
-
-docker run -d -P --name web -v /config:/config 
-启动JVM时，将系统属性提供给/config
-java -jar myproject.jar --spring.config.location=file:/config/application.properties
-
-install docker composer
-
-sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-
-sudo touch .env
-
-sudo docker-compose up
-
-pipenv lock
-sudo docker build . -t muresearchboostalgo:1.00
-```
-
-## 使用指定位置的配置文件
+## Use Config File
 
 ```bash
 java -jar myjar.jar --spring.config.location=D:\wherever\application.properties
 ```
 
-
-## Install
-
-```bash
-sudo docker pull mongo:latest
-sudo docker pull docker.elastic.co/elasticsearch/elasticsearch:6.6.0
-
-```
 
 ## Useful Link
 
@@ -160,104 +71,3 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
 https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/
 
 ```
-
-## About Route
-
-```
-首页
-GET / -> HTML 繁复的搜索页面
-
-词云路由
-GET /api/wordcloud/ -> {} 
-POST /api/wordcloud/ {} -> {}
-
-图路由
-GET /api/graph/user/ -> {}
-GET /api/graph/people/ -> {}
-GET /api/graph/subject/ -> {}
-GET /api/graph/publication/ -> {}
-
-自动补全路由
-POST /api/autocomplete/ string -> {} 
-POST /api/autocomplete/people/ string -> {}
-POST /api/autocomplete/user/ string -> {}
-POST /api/autocomplete/publication/ string -> {}
-POST /api/autocomplete/subject/ string -> {}
-
-搜索路由
-GET /search/ -> HTML 简洁的搜索页面
-POST /search/ {} -> HTML 搜索结果
-POST /search/people/ {} -> HTML
-POST /search/user/ {} -> HTML
-POST /search/publication/ {} -> HTML
-POST /search/subject/ {} -> HTML
-
-POST /api/search/ {} -> {}        通用搜索
-POST /api/search/people/ {} -> {} 针对人的搜索
-POST /api/search/user/ {} -> {} 针对用户的搜索
-POST /api/search/publication/ {} -> {} 针对出版物的搜索
-POST /api/search/subject/ {} -> {} 针对科目的搜索
-
-People
- 
-GET /people/ -> HTML (首页) （获取最近命中最多的人） （搜索框）
-GET /people/id/{id} -> HTML 个人页面
-- 个人信息的展示
-    getPeopleById
-- 跳转到用户页面
-    getPeopleById
-    getPublicationByPeople
-    if getPeopleById.isUser is True:
-        goto getUserById(userId)
-- 和这个人相关的？？？
-
-User
-
-GET /user/{username} -> HTML
-GET /user/id/{id} -> HTML 
-
-Subject 
-
-GET /subject/{subject_name} -> HTML
-GET /subject/id/{id} -> HTML
-GET /api/subject/{id} -> {}
-
-Publication
-
-GET /publication/{id} -> HTML
-GET /api/publication/{id} -> {}
-
-Token
-
-/login
-
-```
-
-http://35.247.68.0:9200/people/_search?pretty=true&q=*:*
-
-清空Docker
-docker system prune -a
-
-## 关于部署
-
-```bash
-# ----------------------------- 
-git clone "https://github.com/bamboovir/muresearch_backend"
-# OS : Ubuntu 18.04 LTS
-sudo snap install docker
-sudo apt install maven
-# maven 打包docker image跳过测试
-sudo mvn package docker:build -Dmaven.test.skip=true
-sudo docker login --username <***> --password <***>
-sudo docker tag <hash> bamboovir/muresearchboost:<version>
-sudo docker push bamboovir/muresearchboost:<version>
-# -----------------------------
-sudo apt install python3-pip
-sudo -H pip3 install pipenv
-sudo docker tag <hash> bamboovir/muresearchalgo:1.00
-
-# -----------------------------
-
-sudo docker-compose up -d
-```
-
